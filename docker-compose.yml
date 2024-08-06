@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+    mysqldb:
+        image: mysql:8.0
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456 # Cambia esto por tu contraseña deseada
+            MYSQL_DATABASE: dashLaravelVue # Cambia esto por el nombre de tu base de datos
+        ports:
+            - "3307:3306" # Mapeo del puerto de MySQL (host:docker)
+        volumes:
+            - db-data:/var/lib/mysql # Volumen para persistir datos de MySQL
+        command: --default-authentication-plugin=mysql_native_password
+
+volumes:
+    db-data:
